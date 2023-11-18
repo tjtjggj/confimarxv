@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmar Asistencia</title>
+    <meta charset="utf-8">
+    <title>Login Form Design One | Fazt</title>
+    <link rel="stylesheet" href="/css/master.css">
+</head>
+<body>
+
+<form id="attendanceForm">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="confirm">¿Podrás asistir?</label><br>
+    <input type="radio" id="yes" name="confirm" value="Si"> Podré ir<br>
+    <input type="radio" id="no" name="confirm" value="No"> No podré ir<br><br>
+
+    <div id="quantityQuestion" style="display:none;">
+        <label for="quantity">Cantidad de personas:</label><br>
+        <select id="quantity" name="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select><br><br>
+    </div>
+
+    <input type="submit" value="Enviar">
+</form>
+
+<script>
+    const attendees = {
+        "Diana Duque": 4,
+        "JUAN DUQUE": 4,
+        "RICARDO DUQUE": 4,
+        "ALBERTANO RICO": 2,
+        "FERNANDO PORRAS": 2,
+        "ILIANA PORRAS": 2,
+        "NAYELI PORRAS": 2,
+        "CARLOS RICO": 2,
+        "MANUEL GARZA": 6,
+        "YESENIA RICO": 3,
+        "JAZZ SEPULVEDA": 6,
+        "BRAYAN SEPULVEDA": 5,
+        "MARCOS SEPULVEDA": 2,
+        "PERLA NOLACEA": 4,
+        "JULIO NOLACEA": 6,
+        "GABY MONREAL": 5,
+        "LUPITA MONREAL": 3,
+        "LAURA MONREAL": 2,
+        "JAIME MONREAL": 2,
+        "ANTOMIO MONREAL": 3,
+        "HECTOR MONREAL": 3,
+        "JAVIER MONREAL": 4,
+        "CARLOS NOLACEA": 6,
+        "RAUL DUQUE": 4,
+        "MONSE DUQUE": 2,
+        "ROMAN DUQUE": 3,
+        "MARIA DUQUE": 4,
+        "GRACIAELA DUQUE": 4,
+        "LUPITA DUQUE": 2,
+        "ARTURO DUQUE": 2,
+        "EPIFANIO GUEL": 2,
+        "ALFREDO GUEL": 2,
+        "JESUS GUEL": 4,
+        "VERONICA CARRAZO": 2,
+        "EDGAR GARCIA": 2,
+        "GUANDALUPE MELENDEZ": 4,
+        "RICARDO SANCHEZ": 3,
+        "CARLOS CASTRO": 6,
+        "BALDEMAR CASTRO": 2,
+        "ALFREDO OSORIO": 2,
+        "PAOLA OSORIO": 3,
+        "PABLO CASTRO": 2,
+        "LIZETH CASTRO": 2,
+        "ARELY CASTRO": 4,
+        "NAUM CASTRO": 2,
+        "PEDRO RICO": 2,
+        "PAOLA RICO": 2,
+        "PANCHIS RICO": 3,
+        "SILVIA LUNA": 2,
+        "MARTIN RICO": 4,
+        "ANA RICO": 2,
+        "OMAR RAMIREZ": 4,
+        "CHRISTIAN SALAS": 2,
+        "JESUS PALACIOS": 3,
+        "JAIME FLORES": 2, 
+        "ARNOLDO HERNANDEZ": 3,
+        "VICENTE GUERRERO": 2,
+        "JOSE LUIS": 4,
+        "EDGAR RIVERA": 3,
+        "PEDRO GARCIA": 2,
+        "CRUZ VARGAS": 4,
+        "TIO CRUZ VARGAS": 2,
+        "ELSA WALLE": 2,
+        "JOSE RICO": 3,
+        "ALEJANDRO GUEL": 4,
+        "MIRANDA": 4,
+        "LUNA": 2,
+        "FRIDA": 2,
+        "FRANCISCO": 1,
+        "CHRISTOPHER": 3,
+        "XIMENA": 2,
+        "SOFIA": 1,
+        "ALEXA": 2,
+        "JOSELYN": 1,
+        "GABY": 2,
+        "PAOLA": 1,
+        "KARLITA": 1,
+        "CARLA": 1,
+        "MELANIE": 1,
+        "DAFNE": 1,
+        "GISELLE": 1,
+        "RUTH CUELLAR": 3,
+        "IMELDA ESTRADA": 3,
+        "DAYRA VALDEZ": 4,
+        "PERLA BUSTOS": 2,
+        "DORA MORALES": 2,
+        "SHARO": 3,
+        "TANIA BARBOSA": 3,
+        "RAMIRO CORONADO": 4,
+        "vanessa": 2,
+        "GERARDO DE LEON": 2,
+        "Fanny": 1,
+        "Missa": 1,
+        "Chichel": 1,
+        "Erik": 1
+    };
+
+    document.getElementById("attendanceForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById("name").value;
+        const confirmYes = document.getElementById("yes").checked;
+
+        if (name in attendees && confirmYes) {
+            const maxQuantity = attendees[name];
+            const quantitySelect = document.getElementById("quantity");
+            quantitySelect.innerHTML = "";
+
+            for (let i = 1; i <= maxQuantity; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                quantitySelect.appendChild(option);
+            }
+
+            document.getElementById("quantityQuestion").style.display = "block";
+        } else {
+            document.getElementById("quantityQuestion").style.display = "none";
+            alert("El nombre ingresado no está en la lista o la asistencia no ha sido confirmada.");
+        }
+    });
+</script>
+
+</body>
+</html>
